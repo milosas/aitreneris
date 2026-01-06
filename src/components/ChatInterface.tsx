@@ -28,7 +28,7 @@ const QUICK_PROMPTS = [
   { text: "Tempimai po treniruotės", icon: "🙆" },
   { text: "Kaip pagerinti pritūpimo techniką?", icon: "🏋️" },
   { text: "Savaitės treniruočių planas pradedantiesiems", icon: "📅" },
-  { text: "Geriausi pratimai nugaros skausmui", icon: "🩺" },
+  { text: "Pratimai nugaros skausmui sumažinti", icon: "🩺" },
 ];
 
 const N8N_WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || "/api/chat";
