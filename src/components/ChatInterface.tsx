@@ -15,20 +15,20 @@ interface WorkoutCategory {
 }
 
 const WORKOUT_CATEGORIES: WorkoutCategory[] = [
-  { id: "strength", name: "Strength", icon: "💪", prompt: "Create a strength training workout for me" },
-  { id: "cardio", name: "Cardio", icon: "🏃", prompt: "Create a cardio workout plan" },
-  { id: "flexibility", name: "Flexibility", icon: "🧘", prompt: "Create a stretching and flexibility routine" },
-  { id: "hiit", name: "HIIT", icon: "⚡", prompt: "Create a high-intensity interval training workout" },
-  { id: "recovery", name: "Recovery", icon: "🧊", prompt: "What recovery exercises should I do today?" },
+  { id: "strength", name: "Jėga", icon: "💪", prompt: "Sukurk man jėgos treniruotę" },
+  { id: "cardio", name: "Kardio", icon: "🏃", prompt: "Sukurk kardio treniruočių planą" },
+  { id: "flexibility", name: "Lankstumas", icon: "🧘", prompt: "Sukurk tempimo ir lankstumo pratimų rutiną" },
+  { id: "hiit", name: "HIIT", icon: "⚡", prompt: "Sukurk intensyvią intervalinę treniruotę" },
+  { id: "recovery", name: "Atsigavimas", icon: "🧊", prompt: "Kokius atsigavimo pratimus turėčiau daryti šiandien?" },
 ];
 
 const QUICK_PROMPTS = [
-  { text: "5-minute warm-up routine", icon: "🔥" },
-  { text: "Full body workout no equipment", icon: "🏠" },
-  { text: "Post-workout stretches", icon: "🙆" },
-  { text: "How to improve my squat form?", icon: "🏋️" },
-  { text: "Weekly workout schedule for beginners", icon: "📅" },
-  { text: "Best exercises for back pain", icon: "🩺" },
+  { text: "5 minučių apšilimo rutina", icon: "🔥" },
+  { text: "Viso kūno treniruotė be įrangos", icon: "🏠" },
+  { text: "Tempimai po treniruotės", icon: "🙆" },
+  { text: "Kaip pagerinti pritūpimo techniką?", icon: "🏋️" },
+  { text: "Savaitės treniruočių planas pradedantiesiems", icon: "📅" },
+  { text: "Geriausi pratimai nugaros skausmui", icon: "🩺" },
 ];
 
 const N8N_WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || "/api/chat";
@@ -39,7 +39,7 @@ export default function ChatInterface() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
   const [userGoal, setUserGoal] = useState<string>("");
-  const [fitnessLevel, setFitnessLevel] = useState<string>("beginner");
+  const [fitnessLevel, setFitnessLevel] = useState<string>("pradedantysis");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -55,8 +55,8 @@ export default function ChatInterface() {
     if (!text.trim() || isLoading) return;
 
     const contextPrefix = userGoal
-      ? `[User Goal: ${userGoal}] [Fitness Level: ${fitnessLevel}] `
-      : `[Fitness Level: ${fitnessLevel}] `;
+      ? `[Vartotojo tikslas: ${userGoal}] [Fizinio pasirengimo lygis: ${fitnessLevel}] `
+      : `[Fizinio pasirengimo lygis: ${fitnessLevel}] `;
 
     const userMessage: Message = { role: "user", content: text };
     setMessages((prev) => [...prev, userMessage]);
@@ -112,7 +112,7 @@ export default function ChatInterface() {
 
   return (
     <div className="flex h-screen bg-gray-900">
-      {/* Sidebar */}
+      {/* Šoninė juosta */}
       <div className={`${showSidebar ? 'w-72' : 'w-0'} transition-all duration-300 bg-gray-800 overflow-hidden`}>
         <div className="p-4 h-full flex flex-col">
           {/* Logo */}
@@ -126,7 +126,7 @@ export default function ChatInterface() {
             </div>
           </div>
 
-          {/* User Settings */}
+          {/* Vartotojo nustatymai */}
           <div className="mb-6 p-3 bg-gray-700/50 rounded-lg">
             <label className="text-gray-400 text-xs block mb-2">Tavo tikslas</label>
             <input
@@ -142,13 +142,13 @@ export default function ChatInterface() {
               onChange={(e) => setFitnessLevel(e.target.value)}
               className="w-full bg-gray-700 text-white text-sm rounded-lg p-2 border-none focus:ring-2 focus:ring-green-500"
             >
-              <option value="beginner">Pradedantysis</option>
-              <option value="intermediate">Vidutinis</option>
-              <option value="advanced">Pažengęs</option>
+              <option value="pradedantysis">Pradedantysis</option>
+              <option value="vidutinis">Vidutinis</option>
+              <option value="pažengęs">Pažengęs</option>
             </select>
           </div>
 
-          {/* Workout Categories */}
+          {/* Treniruočių kategorijos */}
           <div className="mb-6">
             <h3 className="text-gray-400 text-xs uppercase mb-3">Treniruočių tipai</h3>
             <div className="space-y-2">
@@ -165,7 +165,7 @@ export default function ChatInterface() {
             </div>
           </div>
 
-          {/* Quick Actions */}
+          {/* Greiti veiksmai */}
           <div className="flex-1">
             <h3 className="text-gray-400 text-xs uppercase mb-3">Greiti veiksmai</h3>
             <div className="space-y-1">
@@ -181,7 +181,7 @@ export default function ChatInterface() {
             </div>
           </div>
 
-          {/* Clear Chat */}
+          {/* Išvalyti pokalbį */}
           <button
             onClick={clearChat}
             className="mt-auto p-2 text-gray-400 hover:text-red-400 text-sm flex items-center gap-2"
@@ -191,9 +191,9 @@ export default function ChatInterface() {
         </div>
       </div>
 
-      {/* Main Chat Area */}
+      {/* Pagrindinis pokalbių sritas */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
+        {/* Antraštė */}
         <header className="bg-gray-800 border-b border-gray-700 p-4 flex items-center gap-4">
           <button
             onClick={() => setShowSidebar(!showSidebar)}
@@ -207,11 +207,11 @@ export default function ChatInterface() {
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <span className="text-green-500 text-sm">Online</span>
+            <span className="text-green-500 text-sm">Prisijungęs</span>
           </div>
         </header>
 
-        {/* Messages */}
+        {/* Žinutės */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {messages.length === 0 && (
             <div className="h-full flex flex-col items-center justify-center text-center">
@@ -222,7 +222,7 @@ export default function ChatInterface() {
                 pratimus, mitybą ar bet ką, kas susiję su fizine sveikata.
               </p>
 
-              {/* Quick Prompts Grid */}
+              {/* Greitų veiksmų tinklelis */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-2xl">
                 {QUICK_PROMPTS.map((prompt, i) => (
                   <button
@@ -287,7 +287,7 @@ export default function ChatInterface() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input */}
+        {/* Įvesties laukas */}
         <form onSubmit={handleSubmit} className="p-4 bg-gray-800 border-t border-gray-700">
           <div className="flex gap-3 max-w-4xl mx-auto">
             <input
