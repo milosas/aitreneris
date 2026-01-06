@@ -198,11 +198,12 @@ export default function ChatInterface() {
             <select
               value={fitnessLevel}
               onChange={(e) => setFitnessLevel(e.target.value)}
-              className="w-full bg-gray-700 text-white text-sm rounded-lg p-2 border-none focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="w-full bg-gray-700 text-white text-sm rounded-lg p-2 border-none focus:ring-2 focus:ring-green-500 focus:outline-none appearance-none cursor-pointer"
+              style={{ colorScheme: 'dark' }}
             >
-              <option value="pradedantysis">Pradedantysis</option>
-              <option value="vidutinis">Vidutinis</option>
-              <option value="pažengęs">Pažengęs</option>
+              <option value="pradedantysis" className="bg-gray-700 text-white">Pradedantysis</option>
+              <option value="vidutinis" className="bg-gray-700 text-white">Vidutinis</option>
+              <option value="pažengęs" className="bg-gray-700 text-white">Pažengęs</option>
             </select>
           </div>
 
