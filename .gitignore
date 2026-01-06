@@ -20,6 +20,7 @@ dist/
 .idea/
 .vscode/
 .claude/
+.mcp.json
 *.swp
 *.swo
 
@@ -41,3 +42,5 @@ next-env.d.ts
 
 # Testing
 coverage/
+
+.vercel

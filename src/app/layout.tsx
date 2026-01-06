@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Fitness Trainer",
-  description: "Your personal AI-powered fitness coach",
+  title: "AI Fitness Treneris",
+  description: "Tavo asmeninis AI fitness treneris - treniruotės, pratimai, mityba",
 };
 
 export default function RootLayout({
@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">{children}</body>
+    <html lang="lt">
+      <body className="antialiased bg-gray-900">{children}</body>
     </html>
   );
 }
