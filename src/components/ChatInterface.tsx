@@ -57,7 +57,10 @@ export default function ChatInterface() {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Scroll tik kai yra žinučių (ne pirmą kartą atidarant)
+    if (messages.length > 0) {
+      scrollToBottom();
+    }
   }, [messages]);
 
   const handleRefresh = () => {
@@ -169,7 +172,11 @@ export default function ChatInterface() {
         ${showSidebar ? 'w-72 translate-x-0' : 'w-0 -translate-x-full md:translate-x-0'}
         transition-all duration-300 bg-gray-800 overflow-hidden
       `}>
-        <div className="p-4 h-full flex flex-col w-72">
+        <div
+          className="p-4 h-full flex flex-col w-72"
+          onClick={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+        >
           {/* Header su uždarymo mygtuku */}
           <div className="flex items-center justify-between mb-6">
             {/* Logo - paspaudus refreshina */}
