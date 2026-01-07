@@ -9,6 +9,18 @@ html {
   color-scheme: dark;
 }
 
+/* Mobile viewport height fix */
+.h-dvh {
+  height: 100vh; /* Fallback */
+  height: 100dvh; /* Dynamic viewport height - excludes browser UI */
+}
+
+@supports (height: 100dvh) {
+  .h-dvh {
+    height: 100dvh;
+  }
+}
+
 /* Base form element reset - high specificity */
 input[type="text"],
 input[type="email"],

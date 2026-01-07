@@ -156,27 +156,22 @@ export default function ChatInterface() {
     setMessages([]);
   };
 
-  return (
-    <div className="flex h-screen bg-gray-900 overflow-hidden">
-      {/* Overlay mobile */}
-      {showSidebar && (
-        <div
-          className="fixed inset-0 bg-black/50 z-20 md:hidden"
-          onClick={() => setShowSidebar(false)}
-        />
-      )}
+  // Uždaryti sidebar paspaudus ant main content (tik mobile)
+  const handleMainContentClick = () => {
+    if (window.innerWidth < 768 && showSidebar) {
+      setShowSidebar(false);
+    }
+  };
 
-      {/* Šoninė juosta */}
+  return (
+    <div className="flex h-dvh bg-gray-900 overflow-hidden">
+      {/* Šoninė juosta - be overlay, užsidaro tik per X arba paspaudus main content */}
       <div className={`
         fixed md:relative z-30 h-full
         ${showSidebar ? 'w-72 translate-x-0' : 'w-0 -translate-x-full md:translate-x-0'}
         transition-all duration-300 bg-gray-800 overflow-hidden
       `}>
-        <div
-          className="p-4 h-full flex flex-col w-72"
-          onClick={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()}
-        >
+        <div className="p-4 h-full flex flex-col w-72">
           {/* Header su uždarymo mygtuku */}
           <div className="flex items-center justify-between mb-6">
             {/* Logo - paspaudus refreshina */}
@@ -266,8 +261,8 @@ export default function ChatInterface() {
         </div>
       </div>
 
-      {/* Pagrindinis pokalbių sritas */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* Pagrindinis pokalbių sritas - paspaudus uždarys sidebar mobile */}
+      <div className="flex-1 flex flex-col min-w-0" onClick={handleMainContentClick}>
         {/* Antraštė */}
         <header className="bg-gray-800 border-b border-gray-700 p-3 md:p-4 flex items-center gap-3 md:gap-4">
           <button
