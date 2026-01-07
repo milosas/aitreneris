@@ -170,19 +170,29 @@ export default function ChatInterface() {
         transition-all duration-300 bg-gray-800 overflow-hidden
       `}>
         <div className="p-4 h-full flex flex-col w-72">
-          {/* Logo - paspaudus refreshina */}
-          <button
-            onClick={handleRefresh}
-            className="flex items-center gap-3 mb-6 hover:opacity-80 transition w-full text-left"
-          >
-            <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">
-              🏋️
-            </div>
-            <div>
-              <h1 className="text-white font-bold">AI Fitness</h1>
-              <p className="text-gray-400 text-xs">Treneris</p>
-            </div>
-          </button>
+          {/* Header su uždarymo mygtuku */}
+          <div className="flex items-center justify-between mb-6">
+            {/* Logo - paspaudus refreshina */}
+            <button
+              onClick={handleRefresh}
+              className="flex items-center gap-3 hover:opacity-80 transition text-left"
+            >
+              <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                🏋️
+              </div>
+              <div>
+                <h1 className="text-white font-bold">AI Fitness</h1>
+                <p className="text-gray-400 text-xs">Treneris</p>
+              </div>
+            </button>
+            {/* Uždaryti mygtukas mobile */}
+            <button
+              onClick={() => setShowSidebar(false)}
+              className="md:hidden text-gray-400 hover:text-white p-2 text-xl"
+            >
+              ✕
+            </button>
+          </div>
 
           {/* Vartotojo nustatymai */}
           <div className="mb-6 p-3 bg-gray-700/50 rounded-lg">
@@ -192,18 +202,19 @@ export default function ChatInterface() {
               value={userGoal}
               onChange={(e) => setUserGoal(e.target.value)}
               placeholder="pvz., numesti 5kg"
-              className="w-full bg-gray-700 text-white text-sm rounded-lg p-2 border-none focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="w-full text-sm rounded-lg p-2 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              style={{ backgroundColor: '#374151', color: '#ffffff', border: 'none' }}
             />
             <label className="text-gray-400 text-xs block mb-2 mt-3">Lygis</label>
             <select
               value={fitnessLevel}
               onChange={(e) => setFitnessLevel(e.target.value)}
-              className="w-full bg-gray-700 text-white text-sm rounded-lg p-2 border-none focus:ring-2 focus:ring-green-500 focus:outline-none appearance-none cursor-pointer"
-              style={{ colorScheme: 'dark' }}
+              className="w-full text-sm rounded-lg p-2 focus:ring-2 focus:ring-green-500 focus:outline-none cursor-pointer"
+              style={{ backgroundColor: '#374151', color: '#ffffff', border: 'none' }}
             >
-              <option value="pradedantysis" className="bg-gray-700 text-white">Pradedantysis</option>
-              <option value="vidutinis" className="bg-gray-700 text-white">Vidutinis</option>
-              <option value="pažengęs" className="bg-gray-700 text-white">Pažengęs</option>
+              <option value="pradedantysis" style={{ backgroundColor: '#374151', color: '#ffffff' }}>Pradedantysis</option>
+              <option value="vidutinis" style={{ backgroundColor: '#374151', color: '#ffffff' }}>Vidutinis</option>
+              <option value="pažengęs" style={{ backgroundColor: '#374151', color: '#ffffff' }}>Pažengęs</option>
             </select>
           </div>
 
