@@ -156,21 +156,27 @@ export default function ChatInterface() {
     setMessages([]);
   };
 
-  // Uždaryti sidebar paspaudus ant main content (tik mobile)
-  const handleMainContentClick = () => {
-    if (window.innerWidth < 768 && showSidebar) {
-      setShowSidebar(false);
-    }
-  };
-
   return (
     <div className="flex h-dvh bg-gray-900 overflow-hidden">
-      {/* Šoninė juosta - be overlay, užsidaro tik per X arba paspaudus main content */}
-      <div className={`
-        fixed md:relative z-30 h-full
-        ${showSidebar ? 'w-72 translate-x-0' : 'w-0 -translate-x-full md:translate-x-0'}
-        transition-all duration-300 bg-gray-800 overflow-hidden
-      `}>
+      {/* Tamsus fonas kai sidebar atidarytas (tik vizualinis + uždarymas paspaudus) */}
+      {showSidebar && (
+        <div
+          className="fixed inset-0 bg-black/50 z-20 md:hidden"
+          onClick={() => setShowSidebar(false)}
+        />
+      )}
+
+      {/* Šoninė juosta */}
+      <div
+        className={`
+          fixed md:relative z-30 h-full
+          ${showSidebar ? 'w-72 translate-x-0' : 'w-0 -translate-x-full md:translate-x-0'}
+          transition-all duration-300 bg-gray-800 overflow-hidden
+        `}
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="p-4 h-full flex flex-col w-72">
           {/* Header su uždarymo mygtuku */}
           <div className="flex items-center justify-between mb-6">
@@ -261,8 +267,8 @@ export default function ChatInterface() {
         </div>
       </div>
 
-      {/* Pagrindinis pokalbių sritas - paspaudus uždarys sidebar mobile */}
-      <div className="flex-1 flex flex-col min-w-0" onClick={handleMainContentClick}>
+      {/* Pagrindinis pokalbių sritas */}
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Antraštė */}
         <header className="bg-gray-800 border-b border-gray-700 p-3 md:p-4 flex items-center gap-3 md:gap-4">
           <button
