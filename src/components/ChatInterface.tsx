@@ -203,18 +203,16 @@ export default function ChatInterface() {
               onChange={(e) => setUserGoal(e.target.value)}
               placeholder="pvz., numesti 5kg"
               className="w-full text-sm rounded-lg p-2 focus:ring-2 focus:ring-green-500 focus:outline-none"
-              style={{ backgroundColor: '#374151', color: '#ffffff', border: 'none' }}
             />
             <label className="text-gray-400 text-xs block mb-2 mt-3">Lygis</label>
             <select
               value={fitnessLevel}
               onChange={(e) => setFitnessLevel(e.target.value)}
               className="w-full text-sm rounded-lg p-2 focus:ring-2 focus:ring-green-500 focus:outline-none cursor-pointer"
-              style={{ backgroundColor: '#374151', color: '#ffffff', border: 'none' }}
             >
-              <option value="pradedantysis" style={{ backgroundColor: '#374151', color: '#ffffff' }}>Pradedantysis</option>
-              <option value="vidutinis" style={{ backgroundColor: '#374151', color: '#ffffff' }}>Vidutinis</option>
-              <option value="pažengęs" style={{ backgroundColor: '#374151', color: '#ffffff' }}>Pažengęs</option>
+              <option value="pradedantysis">Pradedantysis</option>
+              <option value="vidutinis">Vidutinis</option>
+              <option value="pažengęs">Pažengęs</option>
             </select>
           </div>
 
@@ -374,7 +372,7 @@ export default function ChatInterface() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Klausk apie treniruotes..."
-              className="flex-1 p-3 md:p-4 bg-gray-700 text-white text-sm md:text-base rounded-xl border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="flex-1 p-3 md:p-4 text-sm md:text-base rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
               disabled={isLoading}
             />
             <button
