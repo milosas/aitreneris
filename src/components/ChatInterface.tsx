@@ -157,7 +157,7 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex h-dvh bg-gray-900 overflow-hidden">
+    <div className="flex h-full bg-gray-900 overflow-hidden">
       {/* Tamsus fonas kai sidebar atidarytas (tik vizualinis + uždarymas paspaudus) */}
       {showSidebar && (
         <div

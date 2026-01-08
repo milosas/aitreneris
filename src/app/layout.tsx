@@ -13,9 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="lt">
-      <body className="antialiased bg-gray-900">
+      <body className="antialiased bg-gray-900 h-dvh flex flex-col overflow-hidden">
         {/* BlinGO Agency Header Banner */}
-        <div className="bg-black py-2 px-4">
+        <div className="bg-black py-2 px-4 flex-shrink-0">
           <a
             href="http://www.blingo.lt"
             target="_blank"
@@ -26,11 +26,11 @@ export default function RootLayout({
             <img
               src="/blingo-logo.png"
               alt="BlinGO Agency"
-              className="h-6 invert"
+              className="h-7 invert"
             />
           </a>
         </div>
-        {children}
+        <div className="flex-1 min-h-0">{children}</div>
       </body>
     </html>
   );
