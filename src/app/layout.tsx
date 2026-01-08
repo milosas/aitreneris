@@ -13,7 +13,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="lt">
-      <body className="antialiased bg-gray-900">{children}</body>
+      <body className="antialiased bg-gray-900">
+        {/* BlinGO Agency Header Banner */}
+        <div className="bg-black py-2 px-4">
+          <a
+            href="http://www.blingo.lt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 text-white text-sm hover:opacity-80 transition-opacity"
+          >
+            <span>Sukurta kartu su</span>
+            <img
+              src="/blingo-logo.png"
+              alt="BlinGO Agency"
+              className="h-6 invert"
+            />
+          </a>
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
